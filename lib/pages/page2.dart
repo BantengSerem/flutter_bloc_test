@@ -4,9 +4,9 @@ import 'package:learn_flutter_bloc/bloc/page2_bloc.dart';
 import 'package:learn_flutter_bloc/inheritedWidget/home_bloc_inherited_widget.dart';
 
 class Page2 extends StatelessWidget {
-  const Page2({Key? key}) : super(key: key);
+  Page2({Key? key}) : super(key: key);
 
-  static Page2Bloc page2bloc = Page2Bloc();
+  final Page2Bloc page2bloc = Page2Bloc();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Page2 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BlocBuilder(
-              bloc: page2bloc.firebaseCubit,
+              bloc: page2bloc.stateHandler,
               builder: (context, state) {
                 return Text('$state');
               },
@@ -50,12 +50,12 @@ class Page2 extends StatelessWidget {
               },
               child: const Text('List'),
             ),
-            // ListView.builder(
-            //
-            //   itemBuilder: (context, index) {
-            //     return Page2Card(page2bloc: page2bloc,);
-            //   },
-            // ),
+            ElevatedButton(
+              onPressed: () {
+                page2bloc.firebaseCubit.detail();
+              },
+              child: const Text('detail'),
+            ),
           ],
         ),
       ),
